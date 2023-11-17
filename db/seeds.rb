@@ -1,0 +1,1 @@
+user = User.create(first_name: "first", last_name: "last", email: "email@gmail.com")
