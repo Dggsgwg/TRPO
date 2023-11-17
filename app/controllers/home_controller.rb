@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      redirect_to "users/edit"
+      redirect_to "/users/edit"
     else
       redirect_to root_path
     end

@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: trpo_dev
+  database: trpo_development
   username: postgres
   password: root-pas
   host: localhost
