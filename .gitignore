@@ -6,6 +6,9 @@
 
 # Ignore bundler config.
 /.bundle
+/.idea
+*.iml
+/tmp
 
 # Ignore all environment files (except templates).
 /.env*
