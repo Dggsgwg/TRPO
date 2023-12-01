@@ -1,4 +1,4 @@
-<div id="<%= dom_id travel %>">
+<div id="<%= dom_id travel %>" class="travel__container">
   <p>
     <strong>Departure point:</strong>
     <%= travel.departure_point %>
@@ -11,12 +11,13 @@
 
   <p>
     <strong>Price:</strong>
-    <%= travel.price %>
+    <%= travel.price%>
   </p>
 
   <p>
     <strong>Date:</strong>
     <%= travel.date %>
   </p>
-
+  <strong>Номер телефона: </strong>
+  <%= travel.phone_number %>
 </div>

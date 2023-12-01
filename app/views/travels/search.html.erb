@@ -1,20 +1,36 @@
-<h1>Search Travels</h1>
-
-<%= form_tag(travels_path, method: :get) do %>
-  <div>
-    <%= label_tag :departure_point, 'Departure Point' %>
-    <%= text_field_tag :departure_point %>
+<div class='header'>
+  <div class="flex-container">
+    <div class="header__content">
+      <%= link_to "На главную", travels_path, class:'address' %>
+      <%= link_to "Поиск",search_travels_path, class:'address' %>
+      <%= link_to "Создать",new_travel_path, class:'address' %>
+      <%= link_to "Мой профиль",user_index_path, class:'address'%>
+    </div>
   </div>
 
-  <div>
-    <%= label_tag :destination, 'Destination' %>
-    <%= text_field_tag :destination %>
-  </div>
+</div>
 
-  <div>
-    <%= label_tag :date, 'Date' %>
-    <%= text_field_tag :date, nil, type: :date %>
-  </div>
+<div class="body">
+  <div class="flex-container">
+    <div class="body__content">
+      <%= form_tag(travels_path, method: :get) do %>
+        <div>
+          <%= label_tag :departure_point, 'Departure Point' %>
+          <%= text_field_tag :departure_point %>
+        </div>
 
-  <%= submit_tag 'Search' %>
-<% end %>
+        <div>
+          <%= label_tag :destination, 'Destination' %>
+          <%= text_field_tag :destination %>
+        </div>
+
+        <div>
+          <%= label_tag :date, 'Date' %>
+          <%= text_field_tag :date, nil, type: :date %>
+        </div>
+
+        <%= submit_tag 'Search' %>
+      <% end %>
+    </div>
+  </div>
+</div>

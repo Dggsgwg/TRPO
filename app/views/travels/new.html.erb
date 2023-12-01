@@ -1,9 +1,29 @@
-<h1>New travel</h1>
+<div class='header'>
+  <div class="flex-container">
+    <div class="header__content">
+      <%= link_to "На главную", travels_path, class:'address' %>
+      <%= link_to "Поиск",search_travels_path, class:'address' %>
+      <%= link_to "Создать",new_travel_path, class:'address' %>
+      <%= link_to "Мой профиль",user_index_path, class:'address'%>
+    </div>
+  </div>
 
-<%= render "form", travel: @travel %>
-
-<br>
-
-<div>
-  <%= link_to "Back to travels", travels_path %>
 </div>
+
+<div class='body'>
+  <div class="flex-container">
+    <div class="body__content">
+      <%= render "form", travel: @travel %>
+
+      <br>
+
+      <div>
+        <%= link_to "Back to travels", travels_path %>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

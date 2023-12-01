@@ -10,6 +10,7 @@
 
 </div>
 <div class="body">
+  <%= link_to "Редактировать профиль", edit_user_registration_path, class: 'show_profile' %>
   <h1>Travels</h1>
   <div class="flex-container">
     <div class="body__content">
@@ -19,13 +20,15 @@
           <p>
             <%= link_to "Show this travel", travel %>
           </p>
+          <div class="edit__travel">
+            <%= link_to "Edit this travel", edit_travel_path(travel), class:"change-button" %> |
+
+
+            <%= button_to "Destroy this travel", travel, method: :delete, class:'change-button' %>
+          </div>
         <% end %>
       </div>
 
     </div>
   </div>
 </div>
-
-
-
-

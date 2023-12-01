@@ -6,9 +6,9 @@ class TravelsController < ApplicationController
   def index
     @travels = Travel.where(is_approved: true)
 
-    @travels = @travels.where(departure_point: params[:departure_point]) unless params[:departure_point].empty?
-    @travels = @travels.where(destination: params[:destination]) unless params[:destination].empty?
-    @travels = @travels.where(date: params[:date]) unless params[:date].empty?
+    @travels = @travels.where(departure_point: params[:departure_point]) unless params[:departure_point].nil? or empty?
+    @travels = @travels.where(destination: params[:destination]) unless params[:destination].nil? or empty?
+    @travels = @travels.where(date: params[:date]) unless params[:date].nil? or empty?
   end
 
   # GET /travels/search

@@ -1,10 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<div class='header'>
+  <div class="flex-container">
+    <div class="header__content">
+      <%= link_to "На главную", travels_path, class:'address' %>
+      <%= link_to "Поиск",search_travels_path, class:'address' %>
+      <%= link_to "Создать",new_travel_path, class:'address' %>
+      <%= link_to "Мой профиль",user_index_path, class:'address'%>
+    </div>
+  </div>
 
-<%= render @travel %>
 
-<div>
-  <%= link_to "Edit this travel", edit_travel_path(@travel) %> |
-  <%= link_to "Back to travels", travels_path %>
-
-  <%= button_to "Destroy this travel", @travel, method: :delete %>
 </div>
+
+<div class="body">
+  <div class="flex-container">
+    <div class="body__content">
+      <%= render @travel %>
+      <div class="edit__travel">
+        <%= link_to "Edit this travel", edit_travel_path(@travel), class:"change-button" %> |
+        <%= link_to "Back to travels", travels_path , class:'change-button' %>
+
+        <%= button_to "Destroy this travel", @travel, method: :delete, class:'change-button' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
