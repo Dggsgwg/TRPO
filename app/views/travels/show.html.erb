@@ -15,12 +15,9 @@
   <div class="flex-container">
     <div class="body__content">
       <%= render @travel %>
-      <div class="edit__travel">
-        <%= link_to "Edit this travel", edit_travel_path(@travel), class:"change-button" %> |
+      <p>
         <%= link_to "Back to travels", travels_path , class:'change-button' %>
-
-        <%= button_to "Destroy this travel", @travel, method: :delete, class:'change-button' %>
-      </div>
+      </p>
     </div>
 
   </div>

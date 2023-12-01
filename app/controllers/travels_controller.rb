@@ -6,9 +6,9 @@ class TravelsController < ApplicationController
   def index
     @travels = Travel.where(is_approved: true)
 
-    @travels = @travels.where(departure_point: params[:departure_point]) unless params[:departure_point].nil? or empty?
-    @travels = @travels.where(destination: params[:destination]) unless params[:destination].nil? or empty?
-    @travels = @travels.where(date: params[:date]) unless params[:date].nil? or empty?
+    @travels = @travels.where(departure_point: params[:departure_point]) unless params[:departure_point].blank?
+    @travels = @travels.where(destination: params[:destination]) unless params[:destination].blank?
+    @travels = @travels.where(date: params[:date]) unless params[:date].blank?
   end
 
   # GET /travels/search
@@ -35,7 +35,7 @@ class TravelsController < ApplicationController
 
     respond_to do |format|
       if @travel.save
-        format.html { redirect_to travel_url(@travel), notice: "Travel was successfully created." }
+        format.html { redirect_to travels_url, notice: "Travel was successfully created." }
         format.json { render :show, status: :created, location: @travel }
       else
         format.html { render :new, status: :unprocessable_entity }
