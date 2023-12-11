@@ -4,7 +4,7 @@ class TravelsController < ApplicationController
 
   # GET /travels or /travels.json
   def index
-    @travels = Travel.where(is_approved: true)
+    @travels = Travel.where(is_approved: true).sort
 
     @travels = @travels.where(departure_point: params[:departure_point]) unless params[:departure_point].blank?
     @travels = @travels.where(destination: params[:destination]) unless params[:destination].blank?
@@ -27,6 +27,9 @@ class TravelsController < ApplicationController
 
   # GET /travels/1/edit
   def edit
+    authorize @travel
+  rescue Pundit::NotAuthorizedError
+    redirect_to root_path
   end
 
   # POST /travels or /travels.json
@@ -59,6 +62,12 @@ class TravelsController < ApplicationController
 
   # DELETE /travels/1 or /travels/1.json
   def destroy
+    begin
+      authorize @travel
+    rescue Pundit::NotAuthorizedError
+      redirect_to root_path
+      return
+    end
     @travel.destroy!
 
     respond_to do |format|
@@ -67,19 +76,47 @@ class TravelsController < ApplicationController
     end
   end
 
+  def approve
+    begin
+      authorize Travel
+    rescue Pundit::NotAuthorizedError
+      redirect_to root_path
+      return
+    end
+
+    travel = Travel.find(params[:id])
+    travel.is_approved = true
+    travel.save
+    redirect_to :admin_panel
+  end
+
+  def disapprove
+    begin
+      authorize Travel
+    rescue Pundit::NotAuthorizedError
+      redirect_to root_path
+      return
+    end
+
+    travel = Travel.find(params[:id])
+    travel.is_approved = false
+    travel.save
+    redirect_to :admin_panel
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_travel
-      @travel = Travel.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def travel_params
-      authenticate_user! unless user_signed_in?
-      params.require(:travel).permit(:departure_point, :destination, :price, :date, :phone_number, :is_approved, :user_id)
-            .with_defaults(is_approved: false, user_id: current_user.id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_travel
+    @travel = Travel.find(params[:id])
+  end
 
+  # Only allow a list of trusted parameters through.
+  def travel_params
+    authenticate_user! unless user_signed_in?
+    params.require(:travel).permit(:departure_point, :destination, :price, :date, :phone_number, :is_approved, :user_id)
+          .with_defaults(is_approved: false, user_id: current_user.id)
+  end
 
   def storable_location?
     request.get? &&
